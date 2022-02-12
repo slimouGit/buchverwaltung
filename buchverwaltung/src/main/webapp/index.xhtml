@@ -21,13 +21,28 @@
 
 				<p:outputLabel value="Erscheinungsdatum" />
 				<p:inputText value="#{book.publishDate}" />
+				
+				<p:outputLabel value="Sprache" />
+				<p:selectOneListbox value="#{book.language}">
+					<f:selectItems value="#{book.languages}"/>
+					<f:valueChangeListener type="beans.LanguageValueChangeListener"></f:valueChangeListener>
+				</p:selectOneListbox>
 
 				<p:outputLabel value="Preis" />
 				<p:inputText value="#{book.price}" />
-
+				
+				<p:outputLabel value="Abteilungen, die benachrichtigt werden" />
+				<h:selectManyListbox value="#{book.emailadresses}" valueChangeListener="#{book.emailAdressChanged}">
+					<f:selectItem itemValue="abteilung1@mycompany.com" itemLabel="Abteilung 1"/>
+					<f:selectItem itemValue="abteilung2@mycompany.com" itemLabel="Abteilung 2"/>
+					<f:selectItem itemValue="abteilung3@mycompany.com" itemLabel="Abteilung 3"/>
+					<f:ajax event="valueChange" listener="#{book.emailAdressChangedAjax}" render="sm"></f:ajax>
+				</h:selectManyListbox>
+				<p:outputLabel value="#{book.specialmessage}" id="sm"/>
+				
 			</p:panelGrid>
 
-			<p:commandButton value="Abspeichern" action="#{book.save}" />
+			<p:commandButton value="Abspeichern" action="#{book.save}" actionListener="#{book.saveListener}"/>
 
 		</h:form>
 	</f:view>
