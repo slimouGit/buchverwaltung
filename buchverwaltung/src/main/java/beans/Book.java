@@ -19,7 +19,7 @@ public class Book {
 	private String price;
 	private String[] emailadresses;
 	private String language = "de";
-	private static LinkedHashMap<String, String> languages;
+	private LinkedHashMap<String, String> languages;
 	private String specialmessage;
 	
 	private LinkedHashMap<String, String> emails;
@@ -31,16 +31,13 @@ public class Book {
 		emails.put("Abteilung 1", "abteilung1@mycompany.com");
 		emails.put("Abteilung 2", "abteilung2@mycompany.com");
 		emails.put("Abteilung 3", "abteilung3@mycompany.com");
-	}
-	
-	static {
+		
 		languages = new LinkedHashMap<>();
 		languages.put("Deutsch", "de");
 		languages.put("Englisch", "en");
 		languages.put("Französisch", "fr");
 		languages.put("Koreanisch", "kr");
-	}
-	
+	}	
 	
 	public String save() {
 		return "index";
