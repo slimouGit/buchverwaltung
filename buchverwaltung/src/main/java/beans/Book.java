@@ -2,6 +2,7 @@ package beans;
 
 import java.util.LinkedHashMap;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.event.ActionEvent;
@@ -21,6 +22,17 @@ public class Book {
 	private static LinkedHashMap<String, String> languages;
 	private String specialmessage;
 	
+	private LinkedHashMap<String, String> emails;
+	private String[] selectedEmails; 
+	
+	@PostConstruct
+    public void init() {
+		emails = new LinkedHashMap<>();
+		emails.put("Abteilung 1", "abteilung1@mycompany.com");
+		emails.put("Abteilung 2", "abteilung2@mycompany.com");
+		emails.put("Abteilung 3", "abteilung3@mycompany.com");
+	}
+	
 	static {
 		languages = new LinkedHashMap<>();
 		languages.put("Deutsch", "de");
@@ -35,7 +47,7 @@ public class Book {
 	}
 	
 	public void saveListener(ActionEvent e) {
-		System.out.println("Benachrichtigungen an: " + java.util.Arrays.toString(this.emailadresses));
+		System.out.println("Benachrichtigungen an: " + java.util.Arrays.toString(this.selectedEmails));
 		
 	}
 	
@@ -44,7 +56,7 @@ public class Book {
 	}
 	
 	public void emailAdressChangedAjax(AjaxBehaviorEvent e) {
-		if(this.emailadresses.length > 1) {
+		if(this.selectedEmails.length > 1) {
 			this.specialmessage = "Zu viele Emails ausgewählt.";
 		}else {
 			this.specialmessage = "";
@@ -106,6 +118,19 @@ public class Book {
 	public void setSpecialmessage(String specialmessage) {
 		this.specialmessage = specialmessage;
 	}
+
+	public LinkedHashMap<String, String> getEmails() {
+		return emails;
+	}
+
+	public String[] getSelectedEmails() {
+		return selectedEmails;
+	}
+
+	public void setSelectedEmails(String[] selectedEmails) {
+		this.selectedEmails = selectedEmails;
+	}	
+	
 	
 	
 
