@@ -127,8 +127,5 @@ public class Book {
 	public void setSelectedEmails(String[] selectedEmails) {
 		this.selectedEmails = selectedEmails;
 	}	
-	
-	
-	
 
 }

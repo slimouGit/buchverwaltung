@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/WEB-INF/templates/standardtemplate.xhtml">
+
+	<ui:define name="pagetitle">Bucherfassung</ui:define>
+	<ui:define name="content">
+		<f:view>
+			<h:form>
+				<p:panelGrid columns="2" styleClass="ui-noborder">
+
+					<p:outputLabel value="Autor" />
+					<p:inputText value="#{book.author}" />
+
+					<p:outputLabel value="Titel" />
+					<p:inputText value="#{book.name}" />
+
+					<p:outputLabel value="Erscheinungsdatum" />
+					<p:inputText value="#{book.publishDate}" />
+
+					<p:outputLabel value="Sprache" />
+					<p:selectOneListbox value="#{book.language}">
+						<f:selectItems value="#{book.languages}" />
+						<f:valueChangeListener type="beans.LanguageValueChangeListener"></f:valueChangeListener>
+					</p:selectOneListbox>
+
+					<p:outputLabel value="Preis" />
+					<p:inputText value="#{book.price}" />
+
+					<p:outputLabel value="Abteilungen, die benachrichtigt werden" />
+					<p:selectCheckboxMenu id="menu" value="#{book.selectedEmails}"
+						label="Abteilungen" style="width: 15rem" filter="true"
+						filterMatchMode="startsWith" panelStyle="width: 15rem"
+						scrollHeight="250" dynamic="true">
+						<f:selectItems value="#{book.emails}" />
+						<f:ajax event="change" listener="#{book.emailAdressChangedAjax}"
+							render="sm"></f:ajax>
+					</p:selectCheckboxMenu>
+					<p:outputLabel value="#{book.specialmessage}" id="sm" />
+
+				</p:panelGrid>
+
+				<p:commandButton value="Abspeichern" action="#{book.save}"
+					actionListener="#{book.saveListener}" />
+
+			</h:form>
+		</f:view>
+		</ui:define>
+</ui:composition>
+
+</html>

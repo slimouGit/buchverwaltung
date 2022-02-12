@@ -3,51 +3,46 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
-<h:head>
-	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-	<title>Bucherfassung</title>
-</h:head>
-<h:body>
-	<f:view>
-		<h:form>
-			<p:panelGrid columns="2" styleClass="ui-noborder">
-				
-				<p:outputLabel value="Autor" />
-				<p:inputText value="#{book.author}" />
 
-				<p:outputLabel value="Titel" />
-				<p:inputText value="#{book.name}" />
+<ui:composition template="/WEB-INF/templates/standardtemplate.xhtml">
 
-				<p:outputLabel value="Erscheinungsdatum" />
-				<p:inputText value="#{book.publishDate}" />
+	<ui:define name="pagetitle">Bucherfassung</ui:define>
+	<ui:define name="content">
+		<f:view>
 
-				<p:outputLabel value="Sprache" />
-				<p:selectOneListbox value="#{book.language}">
-					<f:selectItems value="#{book.languages}" />
-					<f:valueChangeListener type="beans.LanguageValueChangeListener"></f:valueChangeListener>
-				</p:selectOneListbox>
+			<p:dataTable var="item" value="#{bookShelf.books}">
+				<p:column headerText="Nr.">
+					<h:outputText value="#{bookShelf.books.rowIndex+1}" />
+				</p:column>
 
-				<p:outputLabel value="Preis" />
-				<p:inputText value="#{book.price}" />
+				<p:column headerText="Autor">
+					<h:outputText value="#{item.author}" />
+				</p:column>
 
-				<p:outputLabel value="Abteilungen, die benachrichtigt werden" />				
-				<p:selectCheckboxMenu id="menu"
-					value="#{book.selectedEmails}" label="Abteilungen"
-					style="width: 15rem" filter="true" filterMatchMode="startsWith"
-					panelStyle="width: 15rem" scrollHeight="250" dynamic="true">
-					<f:selectItems value="#{book.emails}" />
-					<f:ajax event="change"
-						listener="#{book.emailAdressChangedAjax}" render="sm"></f:ajax>
-				</p:selectCheckboxMenu>
-				<p:outputLabel value="#{book.specialmessage}" id="sm" />
+				<p:column headerText="Titel">
+					<h:outputText value="#{item.name}" />
+				</p:column>
 
-			</p:panelGrid>
+				<p:column headerText="Erscheinungsdatum">
+					<h:outputText value="#{item.publishDate}" />
+				</p:column>
 
-			<p:commandButton value="Abspeichern" action="#{book.save}"
-				actionListener="#{book.saveListener}" />
+				<p:column headerText="Sprache">
+					<h:outputText value="#{item.language}" />
+				</p:column>
 
-		</h:form>
-	</f:view>
-</h:body>
+				<p:column headerText="Preis">
+					<h:outputText value="#{item.price}" />
+				</p:column>
+
+				<p:column headerText="Aktionen">
+					<h:outputText value="xxx" />
+				</p:column>
+			</p:dataTable>
+		</f:view>
+	</ui:define>
+</ui:composition>
+
 </html>
