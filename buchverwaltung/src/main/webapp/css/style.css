@@ -30,3 +30,7 @@ body {
 	color: white;
 	padding: 10px 0px;
 }
+
+.errorMessage{
+	color: #ff0000;
+}

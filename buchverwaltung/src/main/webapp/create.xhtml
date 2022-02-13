@@ -12,45 +12,63 @@
 	<ui:define name="content">
 		<f:view>
 			<h:form>
-				<p:panelGrid columns="2" styleClass="ui-noborder">
+				<p:panelGrid columns="3" styleClass="ui-noborder">
 
 					<p:outputLabel value="#{msg['create.author']}" />
-					<p:inputText value="#{book.author}" />
+					<p:inputText id="bookAuthor" value="#{book.author}" required="true" requiredMessage="Bitte Namen des Authors angeben.">
+					<f:validator validatorId="vornameNachnameValidator"/>
+					</p:inputText>
+					<h:message for="bookAuthor" styleClass="errorMessage" />
 
 					<p:outputLabel value="#{msg['create.name']}" />
-					<p:inputText value="#{book.name}" />
+					<p:inputText id="bookTitle" value="#{book.name}" validatorMessage="Der Titel des Buches muss aus 5 bis 50 Zeichen bestehen.">
+						<f:validateLength maximum="50" minimum="5"/>
+					</p:inputText>
+					<h:message for="bookTitle" styleClass="errorMessage" />
 
 					<p:outputLabel value="#{msg['create.publishDate']}" />
-					<p:inputText value="#{book.publishDate}" />
+					<p:inputText id="bookpublishDate" value="#{book.publishDate}"
+					converterMessage="Datum in der Form dd-MM-yyyy angeben.">
+						<f:convertDateTime pattern="dd-MM-yyyy"/>
+					</p:inputText>
+					<h:message for="bookpublishDate" styleClass="errorMessage" />
 
 					<p:outputLabel value="#{msg['create.language']}" />
-					<p:selectOneListbox value="#{book.language}">
+					<p:selectOneListbox id="bookLanguage" value="#{book.language}">
 						<f:selectItems value="#{book.languages}" />
 						<f:valueChangeListener type="beans.LanguageValueChangeListener"></f:valueChangeListener>
 					</p:selectOneListbox>
-
+					<h:message for="bookLanguage" styleClass="errorMessage" />
+										
 					<p:outputLabel value="#{msg['create.price']}" />
-					<p:inputText value="#{book.price}" />
+					<p:inputText id="bookPrice" value="#{book.price}"
+						converterMessage="Der Preis muss mit EUR 9,99 z. B. angegeben werden.">
+						<f:convertNumber type="currency" currencyCode="EUR" />
+					</p:inputText>
+					<h:message for="bookPrice" styleClass="errorMessage" />
 
 					<p:outputLabel value="#{msg['create.departments']}" />
-					<p:selectCheckboxMenu id="menu" value="#{book.selectedEmails}"
-						label="Abteilungen" style="width: 15rem" filter="true"
-						filterMatchMode="startsWith" panelStyle="width: 15rem"
-						scrollHeight="250" dynamic="true">
+					<p:selectCheckboxMenu id="bookEmailaddresses"
+						value="#{book.selectedEmails}" label="Abteilungen"
+						style="width: 15rem" filter="true" filterMatchMode="startsWith"
+						panelStyle="width: 15rem" scrollHeight="250" dynamic="true">
 						<f:selectItems value="#{book.emails}" />
 						<f:ajax event="change" listener="#{book.emailAdressChangedAjax}"
 							render="sm"></f:ajax>
 					</p:selectCheckboxMenu>
-					<p:outputLabel value="#{book.specialmessage}" id="sm" />
-
+					<h:message for="bookEmailaddresses" styleClass="errorMessage" />
 				</p:panelGrid>
-
-				<p:commandButton value="#{msg['create.save']}" action="#{book.save}"
-					actionListener="#{book.saveListener}" />
+				<div>
+					<p:outputLabel value="#{book.specialmessage}" id="sm" />
+				</div>
+				<div>
+					<p:commandButton value="#{msg['create.save']}" update="@form"
+						action="#{book.save}" actionListener="#{book.saveListener}" />
+				</div>
 
 			</h:form>
 		</f:view>
-		</ui:define>
+	</ui:define>
 </ui:composition>
 
 </html>
