@@ -8,31 +8,31 @@
 
 <ui:composition template="/WEB-INF/templates/standardtemplate.xhtml">
 
-	<ui:define name="pagetitle">Bucherfassung</ui:define>
+	<ui:define name="pagetitle">#{msg['create.title']}</ui:define>
 	<ui:define name="content">
 		<f:view>
 			<h:form>
 				<p:panelGrid columns="2" styleClass="ui-noborder">
 
-					<p:outputLabel value="Autor" />
+					<p:outputLabel value="#{msg['create.author']}" />
 					<p:inputText value="#{book.author}" />
 
-					<p:outputLabel value="Titel" />
+					<p:outputLabel value="#{msg['create.name']}" />
 					<p:inputText value="#{book.name}" />
 
-					<p:outputLabel value="Erscheinungsdatum" />
+					<p:outputLabel value="#{msg['create.publishDate']}" />
 					<p:inputText value="#{book.publishDate}" />
 
-					<p:outputLabel value="Sprache" />
+					<p:outputLabel value="#{msg['create.language']}" />
 					<p:selectOneListbox value="#{book.language}">
 						<f:selectItems value="#{book.languages}" />
 						<f:valueChangeListener type="beans.LanguageValueChangeListener"></f:valueChangeListener>
 					</p:selectOneListbox>
 
-					<p:outputLabel value="Preis" />
+					<p:outputLabel value="#{msg['create.price']}" />
 					<p:inputText value="#{book.price}" />
 
-					<p:outputLabel value="Abteilungen, die benachrichtigt werden" />
+					<p:outputLabel value="#{msg['create.departments']}" />
 					<p:selectCheckboxMenu id="menu" value="#{book.selectedEmails}"
 						label="Abteilungen" style="width: 15rem" filter="true"
 						filterMatchMode="startsWith" panelStyle="width: 15rem"
@@ -45,7 +45,7 @@
 
 				</p:panelGrid>
 
-				<p:commandButton value="Abspeichern" action="#{book.save}"
+				<p:commandButton value="#{msg['create.save']}" action="#{book.save}"
 					actionListener="#{book.saveListener}" />
 
 			</h:form>

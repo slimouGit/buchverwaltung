@@ -8,36 +8,36 @@
 
 <ui:composition template="/WEB-INF/templates/standardtemplate.xhtml">
 
-	<ui:define name="pagetitle">Bucherfassung</ui:define>
+	<ui:define name="pagetitle">#{msg['index.title']}</ui:define>
 	<ui:define name="content">
 		<f:view>
 
 			<p:dataTable var="item" value="#{bookShelf.books}">
-				<p:column headerText="Nr.">
+				<p:column headerText="#{msg['index.no']}">
 					<h:outputText value="#{bookShelf.books.rowIndex+1}" />
 				</p:column>
 
-				<p:column headerText="Autor">
+				<p:column headerText="#{msg['index.author']}">
 					<h:outputText value="#{item.author}" />
 				</p:column>
 
-				<p:column headerText="Titel">
+				<p:column headerText="#{msg['index.name']}">
 					<h:outputText value="#{item.name}" />
 				</p:column>
 
-				<p:column headerText="Erscheinungsdatum">
+				<p:column headerText="#{msg['index.publishDate']}">
 					<h:outputText value="#{item.publishDate}" />
 				</p:column>
 
-				<p:column headerText="Sprache">
+				<p:column headerText="#{msg['index.language']}">
 					<h:outputText value="#{item.language}" />
 				</p:column>
 
-				<p:column headerText="Preis">
+				<p:column headerText="#{msg['index.price']}">
 					<h:outputText value="#{item.price}" />
 				</p:column>
 
-				<p:column headerText="Aktionen">
+				<p:column headerText="#{msg['index.actions']}">
 					<h:outputText value="xxx" />
 				</p:column>
 			</p:dataTable>
