@@ -38,9 +38,26 @@
 				</p:column>
 
 				<p:column headerText="#{msg['index.actions']}">
-					<h:outputText value="xxx" />
+					<h:form>
+						<div>
+							<p:commandButton value="editieren"
+								action="#{bookShelf.prepareBookEdit(item)}" />
+						</div>
+					</h:form>
+					<h:form>
+						<div>
+							<p:commandButton value="löschen" update="@form"
+								action="#{bookShelf.deleteBook(item)}" />
+						</div>
+					</h:form>
 				</p:column>
 			</p:dataTable>
+			<h:form>
+				<div>
+					<p:commandButton value="#{msg['create.book']}" update="@form"
+						action="#{bookShelf.prepareNewBook}" />
+				</div>
+			</h:form>
 		</f:view>
 	</ui:define>
 </ui:composition>

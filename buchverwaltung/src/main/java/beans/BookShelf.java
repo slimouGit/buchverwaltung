@@ -1,8 +1,8 @@
 package beans;
 	
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -16,6 +16,8 @@ public class BookShelf implements Serializable{
 
            private static final long serialVersionUID = 1L;
            private static final ArrayList<Book> books; 
+           private Book inedit;
+           private ArrayList<Book> rawBooks;
 
            static{
                books = new ArrayList<Book>();
@@ -23,7 +25,7 @@ public class BookShelf implements Serializable{
                book1.setAuthor("Johann Wolfgang von Goethe");
                book1.setName("Faust");
                book1.setLanguage("de");
-               book1.setPublishDate(LocalDate.of(2022, 12, 04));
+               book1.setPublishDate(new Date(1829-1900,1,19));
                book1.setPrice(5.00);
                books.add(book1);
 	
@@ -31,7 +33,7 @@ public class BookShelf implements Serializable{
                book2.setAuthor("William Shakespeare");
                book2.setName("Romeo und Julia");
                book2.setLanguage("en");
-               book2.setPublishDate(LocalDate.of(1957, 12, 04));
+               book2.setPublishDate(new Date(1597-1900,1,1));
                book2.setPrice(8.49);
                books.add(book2);
 
@@ -39,7 +41,7 @@ public class BookShelf implements Serializable{
                book3.setAuthor("Stephen King");
                book3.setName("Es - It");
                book3.setLanguage("en");
-               book3.setPublishDate(LocalDate.of(1986, 12, 04));
+               book3.setPublishDate(new Date(1986-1900,1,1));
                book3.setPrice(14.99);
                books.add(book3);
            };
@@ -48,9 +50,55 @@ public class BookShelf implements Serializable{
            private DataModel<Book> booksDataModel;
            
            public DataModel<Book> getBooks() {
-        	   if (booksDataModel == null)
-        		   booksDataModel = new ListDataModel<Book>(books);
+        	   if (booksDataModel == null) {
+        		   this.rawBooks = new  ArrayList<Book>();
+        		   this.rawBooks.addAll(books);        	   
+        		   booksDataModel = new ListDataModel<Book>(this.rawBooks);
+        	   }
 
         	   return booksDataModel;
-           }   
+           }           
+           
+           
+           public String prepareNewBook() {
+        	   this.inedit = new Book();
+        	   return "create";
+           }
+           
+           public String prepareBookEdit(Book book) {
+        	   this.inedit = book;
+        	   return "update";
+           }
+           
+           public String deleteBook(Book book) {
+        	   this.rawBooks.remove(book);
+        	   this.booksDataModel = new ListDataModel<Book>(this.rawBooks);
+        	   return "delete";
+           }
+           
+           public String saveBook() {
+        	   if(!this.rawBooks.contains(inedit)) {
+        		   this.rawBooks.add(inedit);
+        		   this.booksDataModel = new ListDataModel<Book>(this.rawBooks);
+        	   }
+        	   inedit = null;
+        	   
+        	   return "index";
+           }
+
+
+
+		public Book getInedit() {
+			return inedit;
+		}
+
+
+
+		public void setInedit(Book inedit) {
+			this.inedit = inedit;
+		}
+           
+           
+           
+           
 }

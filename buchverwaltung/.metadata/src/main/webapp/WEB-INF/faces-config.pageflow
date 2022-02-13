@@ -1,2 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pageflow:Pageflow xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf16446528392400" configfile="/buchverwaltung/src/main/webapp/WEB-INF/faces-config.xml"/>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf16446528392400" configfile="/buchverwaltung/src/main/webapp/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="index.xhtml" x="24" y="24" id="pf16447663864600" referenceLink="//@navigationRule.0/@navigationCase.2/@toViewId|" outlinks="pf16447663864611 pf16447663864612 pf16447673391695" inlinks="pf16447673391695" path="/index.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="create.xhtml" x="180" y="180" id="pf16447663864613" referenceLink="//@navigationRule.0/@navigationCase.1/@toViewId|" inlinks="pf16447663864611 pf16447663864612" path="/create.xhtml"/>
+  <links id="pf16447663864611" target="pf16447663864613" source="pf16447663864600" outcome="create"/>
+  <links id="pf16447663864612" target="pf16447663864613" source="pf16447663864600" outcome="update"/>
+  <links id="pf16447673391695" target="pf16447663864600" source="pf16447663864600" outcome="delete"/>
+</pageflow:Pageflow>

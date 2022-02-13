@@ -1,6 +1,6 @@
 package beans;
 
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.LinkedHashMap;
 
 import javax.annotation.PostConstruct;
@@ -16,7 +16,7 @@ public class Book {
 	
 	private String author;
 	private String name;
-	private LocalDate publishDate;
+	private Date publishDate;
 	private Double price;
 	private String[] emailadresses;
 	private String language = "de";
@@ -76,10 +76,10 @@ public class Book {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public LocalDate getPublishDate() {
+	public Date getPublishDate() {
 		return publishDate;
 	}
-	public void setPublishDate(LocalDate publishDate) {
+	public void setPublishDate(Date publishDate) {
 		this.publishDate = publishDate;
 	}
 	public Double getPrice() {
