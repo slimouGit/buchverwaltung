@@ -73,7 +73,7 @@ public class BookShelf implements Serializable{
            public String deleteBook(Book book) {
         	   this.rawBooks.remove(book);
         	   this.booksDataModel = new ListDataModel<Book>(this.rawBooks);
-        	   return "delete";
+        	   return "index.xhtml?faces-redirect=true";
            }
            
            public String saveBook() {
