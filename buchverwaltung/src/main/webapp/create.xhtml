@@ -12,6 +12,9 @@
 	<ui:define name="content">
 		<f:view>
 			<h:form>
+			
+				<f:event listener="#{purchasePublichingDateValidator.validiereVeroeffentlichungsUndKaufdatum(bookShelf.inedit)}" type="postValidate"></f:event>
+				
 				<p:panelGrid columns="3" styleClass="ui-noborder">
 
 					<p:outputLabel value="#{msg['create.author']}" />
@@ -26,12 +29,15 @@
 					</p:inputText>
 					<h:message for="bookTitle" styleClass="errorMessage" />
 
-					<p:outputLabel value="#{msg['create.publishDate']}" />
-					<p:inputText id="bookpublishDate" value="#{bookShelf.inedit.publishDate}"
-					converterMessage="Datum in der Form dd-MM-yyyy angeben.">
-						<f:convertDateTime pattern="dd-MM-yyyy"/>
-					</p:inputText>
+					<p:outputLabel value="#{msg['create.publishDate']}" />					
+                	<p:datePicker id="bookpublishDate" value="#{bookShelf.inedit.publishDate}"
+                	required="true" requiredMessage="Bitte Erscheinungsdatum angeben."/>
 					<h:message for="bookpublishDate" styleClass="errorMessage" />
+					
+					<p:outputLabel value="#{msg['create.purchaseDate']}" />					
+                	<p:datePicker id="bookPurchaseDate" value="#{bookShelf.inedit.purchaseDate}"
+                	required="true" requiredMessage="Bitte Kaufdatum angeben."/>
+					<h:message for="bookPurchaseDate" styleClass="errorMessage" />
 
 					<p:outputLabel value="#{msg['create.language']}" />
 					<p:selectOneListbox id="bookLanguage" value="#{bookShelf.inedit.language}">

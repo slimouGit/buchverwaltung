@@ -1,5 +1,6 @@
 package beans;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.LinkedHashMap;
 
@@ -16,7 +17,8 @@ public class Book {
 	
 	private String author;
 	private String name;
-	private Date publishDate;
+	private LocalDate publishDate;
+	private LocalDate purchaseDate;
 	private Double price;
 	private String[] emailadresses;
 	private String language = "de";
@@ -76,12 +78,22 @@ public class Book {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Date getPublishDate() {
+	public LocalDate getPublishDate() {
 		return publishDate;
 	}
-	public void setPublishDate(Date publishDate) {
+	public void setPublishDate(LocalDate publishDate) {
 		this.publishDate = publishDate;
 	}
+	
+	
+	public LocalDate getPurchaseDate() {
+		return purchaseDate;
+	}
+
+	public void setPurchaseDate(LocalDate purchaseDate) {
+		this.purchaseDate = purchaseDate;
+	}
+
 	public Double getPrice() {
 		return price;
 	}

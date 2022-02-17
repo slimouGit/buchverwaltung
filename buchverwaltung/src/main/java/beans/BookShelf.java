@@ -1,9 +1,8 @@
 package beans;
 	
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
-
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.model.DataModel;
@@ -25,7 +24,8 @@ public class BookShelf implements Serializable{
                book1.setAuthor("Johann Wolfgang von Goethe");
                book1.setName("Faust");
                book1.setLanguage("de");
-               book1.setPublishDate(new Date(1829-1900,1,19));
+               book1.setPublishDate(LocalDate.of(2020,01,01));
+               book1.setPurchaseDate(LocalDate.of(2019,01,01));
                book1.setPrice(5.00);
                books.add(book1);
 	
@@ -33,7 +33,8 @@ public class BookShelf implements Serializable{
                book2.setAuthor("William Shakespeare");
                book2.setName("Romeo und Julia");
                book2.setLanguage("en");
-               book2.setPublishDate(new Date(1597-1900,1,1));
+               book2.setPublishDate(LocalDate.of(2020,01,01));
+               book2.setPurchaseDate(LocalDate.of(2019,01,01));
                book2.setPrice(8.49);
                books.add(book2);
 
@@ -41,7 +42,8 @@ public class BookShelf implements Serializable{
                book3.setAuthor("Stephen King");
                book3.setName("Es - It");
                book3.setLanguage("en");
-               book3.setPublishDate(new Date(1986-1900,1,1));
+               book3.setPublishDate(LocalDate.of(2020,01,01));
+               book3.setPurchaseDate(LocalDate.of(2019,01,01));
                book3.setPrice(14.99);
                books.add(book3);
            };
